@@ -1,15 +1,21 @@
+# String Compare As A Service
+
+![screenshot](screenshot.png)
 
 ### Development mode
 
-To start the Figwheel compiler, navigate to the project folder and run the following command in the terminal:
-
+First start the mock server:
 ```
-lein figwheel
+cd server
+npm install
+npm run mock
 ```
 
-Figwheel will automatically push cljs changes to the browser.
-Once Figwheel starts up, you should be able to open the `public/index.html` page in the browser.
-
+Then start Figwheel, passing mock server URL as an env var:
+```
+API_BASE_URL=http://localhost:9000 lein repl
+user=> (start-fw)
+```
 
 ### Building for production
 

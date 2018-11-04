@@ -1,19 +1,29 @@
 (defproject contrast "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :description "contrast app"
 
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[adzerk/env "0.4.0"]
+                 [cljs-ajax "0.7.3"]
+                 [com.cognitect/transit-clj "0.8.313"]
+                 [day8.re-frame/http-fx "0.1.4"]
+                 [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.339"]
+                 [re-frame "0.10.5"]
+                 [re-frisk "0.5.3"]
                  [reagent "0.8.1"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-figwheel "0.5.16"]]
 
   :min-lein-version "2.5.0"
-  :jvm-opts ["--add-modules" "java.xml.bind"]
+
+  :jvm-opts ^:replace ["--add-modules"
+                       "java.xml.bind"
+                       "-server"
+                       "-Xmx3g"
+                       "-Xverify:none"]
+
   :clean-targets ^{:protect false}
+
   [:target-path
    [:cljsbuild :builds :app :compiler :output-dir]
    [:cljsbuild :builds :app :compiler :output-to]]
@@ -49,7 +59,7 @@
 
   :aliases {"package" ["do" "clean" ["cljsbuild" "once" "release"]]}
 
-  :profiles {:dev {:source-paths ["src" "env/dev/clj"]
+  :profiles {:dev {:source-paths ["src" "cljs_src" "env/dev/clj"]
                    :dependencies [[binaryage/devtools "0.9.10"]
                                   [figwheel-sidecar "0.5.16"]
                                   [nrepl "0.4.4"]

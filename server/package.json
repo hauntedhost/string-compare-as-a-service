@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mock.js",
+  "scripts": {
+    "mock": "node mock.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "express-simulate-latency": "0.0.2",
+    "lodash": "^4.17.11"
+  }
+}
